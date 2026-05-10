@@ -1,7 +1,7 @@
 use thisError::Error;
 
 #[derive(Debug, Error)]
-pub enum SssError {
+pub enum ShsError {
     #[error("invalid threshold: need 1 <= t <= n , got t={threshold} , n={num_shares}")]
     InvalidThreshold{
         threshold:usize,
