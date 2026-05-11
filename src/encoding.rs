@@ -16,7 +16,7 @@ pub fn decode_share(s: &str) -> Result<Share, ShsError> {
         reason: "expected format 'index-hexdata'".into(),
     })?;
 
-    let index: u8 = idx_str.parse().map_err(|_| SssError::InvalidShareFormat {
+    let index: u8 = idx_str.parse().map_err(|_| ShsError::InvalidShareFormat {
         reason: format!("invalid index: '{}'", idx_str),
     })?;
 
@@ -26,12 +26,12 @@ pub fn decode_share(s: &str) -> Result<Share, ShsError> {
         });
     }
 
-    let bytes = hex::decode(hex_str).map_err(|e| SssError::InvalidShareFormat {
+    let bytes = hex::decode(hex_str).map_err(|e| ShsError::InvalidShareFormat {
         reason: format!("bad hex: {}", e),
     })?;
 
     if bytes.len() % 2 != 0 {
-        return Err(SssError::InvalidShareFormat {
+        return Err(ShsError::InvalidShareFormat {
             reason: "hex data must have even byte count".into(),
         });
     }

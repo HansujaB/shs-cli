@@ -1,5 +1,5 @@
 use crate::errors::ShsError;
-use rand::RngCore;
+use rand::Rng;
 
 const PRIME:u64=257;
 
@@ -16,7 +16,7 @@ pub struct Share{
 // modular arithmetic functions
 
 pub fn mod_add(a:u64, b:u64, p:u64)-> u64{
-    ((a%p)+(b%p))%p;
+    ((a%p)+(b%p))%p
 }
 
 pub fn mod_sub(a:u64, b:u64, p:u64) -> u64{
@@ -68,7 +68,7 @@ fn eval_polynomial(coeffs: &[u64], x: u64, p: u64) -> u64 {
 
 // public API
 // Split `secret` into `num_shares` shares with the given `threshold`.
-pub fn split(secret: &[u8], threshold: usize, num_shares: usize) -> Result<Vec<Share>, SssError> {
+pub fn split(secret: &[u8], threshold: usize, num_shares: usize) -> Result<Vec<Share>, ShsError> {
     if secret.is_empty() {
         return Err(ShsError::EmptySecret);
     }
@@ -94,7 +94,7 @@ pub fn split(secret: &[u8], threshold: usize, num_shares: usize) -> Result<Vec<S
     Ok(shares)
 }
 // Reconstruct the secret from at least `threshold` shares via Lagrange interpolation.
-pub fn reconstruct(shares: &[Share], threshold: usize) -> Result<Vec<u8>, SssError> {
+pub fn reconstruct(shares: &[Share], threshold: usize) -> Result<Vec<u8>, ShsError> {
     if shares.len() < threshold {
         return Err(ShsError::InsufficientShares {
             threshold,

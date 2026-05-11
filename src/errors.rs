@@ -1,4 +1,4 @@
-use thisError::Error;
+use thiserror::Error;
 
 #[derive(Debug, Error)]
 pub enum ShsError {
@@ -16,10 +16,10 @@ pub enum ShsError {
     InvalidShareFormat {
         reason: String,
     },
-    #[error:("reconstruction failed: {reason}")]
+    #[error("reconstruction failed: {reason}")]
     ReconstructionFailed{
         reason:String,
-    }
+    },
     #[error("secret must not be empty")]
     EmptySecret,
 }
