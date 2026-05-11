@@ -1,6 +1,6 @@
 [package]
 name = "shs-cli"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 description = "A CLI tool for Shamir's Secret Sharing — split secrets into n shares, reconstruct from any t"
 license = "MIT"
