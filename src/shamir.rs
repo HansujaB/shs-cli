@@ -104,7 +104,7 @@ pub fn reconstruct(shares: &[Share], threshold: usize) -> Result<Vec<u8>, SssErr
     let secret_len = shares[0].data.len();
     for s in shares {
         if s.data.len() != secret_len {
-            return Err(SssError::ReconstructionFailed {
+            return Err(ShsError::ReconstructionFailed {
                 reason: "shares have mismatched lengths".into(),
             });
         }
@@ -129,7 +129,7 @@ pub fn reconstruct(shares: &[Share], threshold: usize) -> Result<Vec<u8>, SssErr
             value = mod_add(value, mod_mul(yi, basis, PRIME), PRIME);
         }
         if value > 255 {
-            return Err(SssError::ReconstructionFailed {
+            return Err(ShsError::ReconstructionFailed {
                 reason: format!("value {} is not a valid byte", value),
             });
         }
