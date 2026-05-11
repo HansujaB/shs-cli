@@ -33,7 +33,7 @@ pub fn mod_pow(mut base:u64, mut exp:u64, p:u64) -> u64{
     let mut result= 1u64;
     base %= p;
     while exp>0 {
-        if(exp%2==1){
+        if exp%2==1{
             result= mod_mul(result,base,p);
         }
         exp /=2;
