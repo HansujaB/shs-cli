@@ -1,4 +1,4 @@
-# 🔐 shs-cli
+# shs-cli
 
 A command-line tool for **Shamir's Secret Sharing** — split any secret into `n` shares such that any `t` of them can reconstruct the original, but `t-1` reveal absolutely nothing.
 
